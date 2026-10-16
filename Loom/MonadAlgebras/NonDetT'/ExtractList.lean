@@ -533,7 +533,7 @@ public meta section
 
 namespace MultiExtractor
 
-open Lean.Order AngelicChoice
+open Lean.Order _root_.MultiExtractor.AngelicChoice
 
 section ExtractionTactic
 
@@ -892,7 +892,7 @@ variable
   (h : ExtractConstraint κ m m' findOf s s')
   (post : α → l)
 
-open AngelicChoice
+open _root_.MultiExtractor.AngelicChoice
 
 def NonDetT.extractList {α : Type u} (s : NonDetT m α)
   (h : ConstrainedExtractResult κ m m' (findOfCandidates κ) s := by extract_list_tactic)
