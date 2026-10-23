@@ -1,7 +1,7 @@
-# Loom for Veil
+# Standalone Loom
 
-This checkout contains the standalone Loom core for
-[Veil](https://github.com/verse-lab/veil), on Lean 4.32.0. It provides monad
+This checkout contains the standalone Loom core on **Lean 4.35.0** for clients such as
+[Veil](https://github.com/verse-lab/veil). It provides monad
 algebras, weakest-precondition semantics, nondeterministic computations, and
 extraction to executable computations.
 
@@ -17,9 +17,15 @@ the path to this checkout:
 require Loom from "../loom"
 ```
 
-For Git consumption after publication, require a revision containing the
-standalone migration. The older `v4.32.0-for-veil` revision may still depend
-on mathlib.
+For Git consumption of this fork:
+
+```lean
+require Loom from git "https://github.com/soonhokong/loom.git" @ "master"
+```
+
+Pin the tested commit instead of the branch name in reproducible downstream
+projects. The root library, native-consumer tests, and optional mathlib adapter
+use Lean 4.35.0. The older `v4.32.0-for-veil` revision may still depend on mathlib.
 
 Veil uses this entry point:
 
@@ -52,6 +58,13 @@ lake build Loom:static
 lake test
 python3 scripts/check_foundations.py
 ```
+
+`lake test` includes a transitive axiom audit of Loom declarations. Only
+`propext`, `Classical.choice`, and `Quot.sound` are allowed. This checks proof
+dependencies, not the correctness of a client's language model or the
+discharge of hypotheses in generic theorems.
+
+See [Lean 4.35 notes](docs/lean435.md) for the release review and client guidance.
 
 The toolchain is pinned in `lean-toolchain`. The root package has no external
 Lake dependencies and does not download or require external SMT solvers.

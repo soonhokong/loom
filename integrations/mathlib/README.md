@@ -7,12 +7,12 @@ lakefile, adjusting the path to the checkout:
 require LoomMathlib from "../loom/integrations/mathlib"
 ```
 
-This package requires the root Loom checkout and the pinned mathlib revision.
+This package uses Lean 4.35.0, the root Loom checkout, and the matching pinned mathlib revision.
 The root package does not require this integration package. The nested package also supports a Git dependency:
 
 ```lean
-require LoomMathlib from git "https://github.com/verse-lab/loom.git" @
-  "<published-revision-containing-this-package>" / "integrations/mathlib"
+require LoomMathlib from git "https://github.com/soonhokong/loom.git" @
+  "<tested-commit>" / "integrations/mathlib"
 ```
 
 Use a revision containing the standalone migration after it is published.
